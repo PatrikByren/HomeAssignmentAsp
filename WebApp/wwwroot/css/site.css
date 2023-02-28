@@ -6,8 +6,8 @@ html, body {
     font-weight: 400;
     font-size: 16px;
 }
-.getalluser {
-    margin: 1rem;
+.updateuser {
+    margin-bottom: 1rem;
 }
 .lineinprice {
     text-decoration: line-through;
@@ -909,3 +909,14 @@ p {
                 background-color: #FAFAFA;
                 border: none;
             }
+.delete {
+    background: #F29423;
+}
+.updateuser {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.lineinprice {
+    text-decoration: line-through;
+}

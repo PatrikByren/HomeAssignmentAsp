@@ -8,10 +8,10 @@
 }
 <partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
 
-<div class="container">
+<section class="container">
     @foreach (var contact in Model)
     {
         <partial name="~/Views/Shared/Partials/Individuals/Users/_GetAllUsers.cshtml" model="@contact" />
-    }   
-</div>
+    }
+</section>
 

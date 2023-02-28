@@ -3,8 +3,9 @@
 
 
 
-<div class='updateuser'>
-    <form method="post" asp-controller="Account" asp-action="UpdateUser" asp-route-ReturnUrl="@Model.ReturnUrl" class="row g-3">
+<div class="updateuser">
+    <p title-3>AccountName: @Model.Email | ID: @Model.Id </p>
+    <form method="post" asp-controller="Account" asp-action="UpdateUser" asp-route-ReturnUrl="@Model.ReturnUrl">
         <div class="row">
             <div class="registration-form-error-summary">
                 <div asp-validation-summary="ModelOnly" class="error"></div>
@@ -59,13 +60,13 @@
                         <option value="User Manager">User Manager</option>
                  </select>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <button type="submit" class="btn btn-outline-secondary">UPDATE USER</button>
             </div>
 
     </form>
-    <form method="post" asp-controller="Account" asp-action="DeleteUser" asp-route-ReturnUrl="@Model.ReturnUrl" class="row g-3">
-        <div class="row">
+    <form method="post" asp-controller="Account" asp-action="DeleteUser" asp-route-ReturnUrl="@Model.ReturnUrl" class="col-2">
+        <div>
             <div class="registration-form-error-summary">
                 <div asp-validation-summary="ModelOnly" class="error"></div>
             </div>
@@ -75,7 +76,9 @@
                 <span asp-validation-for="Id" class="error"></span>
             </div>
             <div class="col-6">
-                <button type="submit" class="btn btn-primary">DELETE USER</button>
+                <button type="submit" class="btn btn-primary delete">DELETEUSER</button>
             </div>
     </form>
+    <br/>
 </div>
+<hr />
