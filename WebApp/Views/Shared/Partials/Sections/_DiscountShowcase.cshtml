@@ -1,0 +1,14 @@
+﻿@model List<ProductCardModel>
+@{
+    var products = Model.OrderByDescending(x => x.DiscountPrice).Take(2).ToList();
+}
+<section class='discountshowcase'>
+    <div class='container'>
+        @if (products.Count >= 2)
+        {
+        <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@products[0]" class="discountcard" />
+        <partial name="~/Views/Shared/Partials/Individuals/DiscountShowcaseIndividuals/_DiscountCard.cshtml" class="discountcard" />
+        <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@products[1]" class="discountcard" />
+        }
+    </div>
+</section>

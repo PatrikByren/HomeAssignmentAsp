@@ -1,0 +1,17 @@
+﻿@model ProductDescriptionModel
+
+@{
+    var products = Model.Cards.Take(4).ToList();
+}
+
+<section class='relatedproducts container'>
+    <p class='title-3'>Related Products</p>
+    <div class='productcontainer'>
+        {@foreach (var product in products)
+            {
+            <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
+            }
+        }
+    </div>
+
+</section>

@@ -1,0 +1,21 @@
+﻿@model UserProfileModel
+
+
+<div class='removeuser'>
+    <form method="post" asp-controller="Account" asp-action="DeleteUser" asp-route-ReturnUrl="@Model.ReturnUrl" class="row g-3">
+        <div class="row">
+            <div class="registration-form-error-summary">
+                <div asp-validation-summary="ModelOnly" class="error"></div>
+            </div>
+            <div class="col-12 hide">
+                <label for="inputId" class="form-label">Enter the ID of the User you want to DELETE</label>
+                <input asp-for="Id" type="text" class="form-control" id="inputId" />
+                <span asp-validation-for="Id" class="error"></span>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">DELETE USER</button>
+            </div>
+    </form>
+</div>
+
+

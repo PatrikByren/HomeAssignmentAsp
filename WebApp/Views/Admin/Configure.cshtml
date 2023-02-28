@@ -1,0 +1,81 @@
+﻿@model SignUpForm
+@{
+    ViewData["Title"] = "Become a Admin";
+}
+
+<section class='registeraccount'>
+    <div class='container'>
+        <div class='formcontainer'>
+            <form class="row g-3" method="post" asp-action="Configure" asp-route-ReturnUrl="@Model.ReturnUrl" novalidate>
+                <div class="row">
+                    <div class="registration-form-error-summary">
+                        <div asp-validation-summary="ModelOnly" class="error"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputfirstname" class="form-label">@Html.DisplayNameFor(m => m.FirstName)</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="error"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputlastname" class="form-label">@Html.DisplayNameFor(m => m.LastName)</label>
+                        <input asp-for="LastName" type="text" class="form-control" id='inputlastname' aria-label="Last name" />
+                        <span asp-validation-for="LastName" class="error"></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Street Name*</label>
+                    <input asp-for="StreetAdress" type="text" class="form-control" id="inputAddress" />
+                    <span asp-validation-for="StreetAdress" class="error"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputpostalcode" class="form-label">Postal Code*</label>
+                        <input asp-for="PostalCode" type="text" class="form-control" id="inputpostalcode" />
+                        <span asp-validation-for="PostalCode" class="error"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCity" class="form-label">City*</label>
+                        <input asp-for="City" type="text" class="form-control" id="inputCity" />
+                        <span asp-validation-for="City" class="error"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputphone" class="form-label">Phonenumber (optional)</label>
+                        <input asp-for="PhoneNumber" type="text" class="form-control" id='inputphone' aria-label="Phonenumber" />
+                        <span asp-validation-for="PhoneNumber" class="error"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputcompany" class="form-label">Company (optional)</label>
+                        <input asp-for="Company" type="text" class="form-control" id='inputcompany' aria-label="Company" />
+                        <span asp-validation-for="Company" class="error"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="inputEmail4" class="form-label">Email*</label>
+                    <input asp-for="Email" type="email" class="form-control" id="inputEmail4" />
+                    <span asp-validation-for="Email" class="error"></span>
+                </div>
+                <div class="col-md-12">
+                    <label for="inputPassword4" class="form-label">Password*</label>
+                    <input asp-for="Password" type="password" class="form-control" id="inputPassword4" />
+                    <span asp-validation-for="Password" class="error"></span>
+                </div>
+                <div class="col-md-12">
+                    <label for="inputConfirmPassword4" class="form-label">Confirm Password*</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" id="inputConfirmPassword4" />
+                    <span asp-validation-for="ConfirmPassword" class="error"></span>
+                </div>
+
+                <div class="col mb-12">
+                    <label for="inputGroupFile02" class="form-label">Upload Profile Image (optional)</label>
+                    <input asp-for="ImgUrl" type="file" class="form-control" id="inputGroupFile02" />
+                    <span asp-validation-for="ImgUrl" class="error"></span>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

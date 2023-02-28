@@ -1,0 +1,24 @@
+﻿@model ProductDescriptionModel
+
+<section class='productdetails'>
+    <div class='container'>
+        <div class='detailsimagecontainer'>
+            <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_ImageDetails.cshtml" model="@Model" />
+            <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_ProductAddToCart.cshtml" model="@Model" />
+        </div>
+        <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_NavbarLinks.cshtml" />
+        <div>
+            <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_ProductDescription.cshtml" model="@Model" />
+        </div>
+        <div class="hide">
+            <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_AdditionalInfo.cshtml" model="@Model" />
+        </div>
+        <div class="hide">
+            <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_Reviews.cshtml" model="@Model" />
+        </div>
+        <div class="hide">
+            <partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_ShippingAndDelivery.cshtml" model="@Model" />
+        </div>
+    </div>
+</section>
+

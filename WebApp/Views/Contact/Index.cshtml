@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Product";
+
+    var subHeading = new SubHeadingModel { Title = "CONTACT", Subtitle = "HOME. CONTACT" };
+
+    var products = Model;
+
+
+}
+<partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
+<partial name="~/Views/Shared/Partials/Individuals/Contact/_ContactForm.cshtml" />
+<partial name="~/Views/Shared/Partials/Individuals/Contact/_Map.cshtml" />

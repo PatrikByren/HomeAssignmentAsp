@@ -1,0 +1,23 @@
+﻿@model List<ProductCardModel>
+@{
+    var products = Model.Take(8).ToList();
+}
+
+<section>
+    <div class='bestcollection container'>
+        <p class='title-1'>Best Collection</p>
+        <partial name="~/Views/Shared/Partials/Individuals/BestCollectionIndividuals/_BestCollectionCategory.cshtml" />
+        <div class='productcardcontainer row row-cols-1 row-cols-md-4 g-4'>
+            @if (products.Count >= 8)
+            {@foreach (var product in products)
+                {
+                    <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
+                }
+
+            }
+        </div>
+        <button class='btn'>LOAD MORE <i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+</section>
+
+

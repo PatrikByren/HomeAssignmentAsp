@@ -1,0 +1,29 @@
+﻿@{
+    var admin = new MenuLinkModel { Controller = "Admin", Action = "Index", Name = "ADMIN" };
+    var product = new MenuLinkModel { Controller = "Admin", Action = "CreateProduct", Name = "Createproduct" };
+
+    var links = new List<MenuLinkModel>
+    {
+        new MenuLinkModel {Controller= "Home", Action="Index", Name = "HOME"},
+        new MenuLinkModel {Controller= "Product", Action="Index", Name = "PRODUCTS"},
+        new MenuLinkModel {Controller= "Contact", Action="Index", Name = "CONTACTS"}
+    };
+}    
+
+<nav class='headerlinks'>
+    
+    @if (User.IsInRole("Administrator"))
+    {
+        <partial name="~/Views/Shared/Partials/Individuals/_MenuLink.cshtml" model="@admin" />
+    }
+    @if (User.IsInRole("Administrator") || User.IsInRole("Product Manager"))
+    {
+        <partial name="~/Views/Shared/Partials/Individuals/_MenuLink.cshtml" model="@product" />
+    }
+
+    @foreach(var link in links)
+    {
+    <partial name="~/Views/Shared/Partials/Individuals/_MenuLink.cshtml" model="@link"/>
+    }
+
+ </nav>

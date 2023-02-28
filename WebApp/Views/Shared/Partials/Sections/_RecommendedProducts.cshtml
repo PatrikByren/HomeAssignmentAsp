@@ -1,0 +1,28 @@
+﻿@model List<ProductCardModel>
+@{
+    var products = Model.Take(3).ToList();
+}
+@{
+    var comments = new ProductReviewsModel { PostBy = "ADMIN", Content = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, ullam magnam! Quos quas omnis temporibus nisi." };
+}
+
+
+
+<section class='recommendedproducts'>
+    <div class='container'>
+        @if (products.Count >= 3)
+        {
+            @foreach (var product in products)
+            {
+                <div class='recommendedproductscontainer'>
+                        <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
+                    <p>@comments.Content</p>
+                <div class='post'>
+                    <p>POST BY: @comments.PostBy</p>
+                    <p>COMMENTS: @product.TotalComments</p>
+                </div>
+        </div>
+            }
+        }
+    </div>
+</section>

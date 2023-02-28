@@ -1,0 +1,11 @@
+﻿@if (SignInManager.IsSignedIn(User))
+{
+    <h2>My Account - @User.FindFirst("DisplayName").Value</h2>
+    <p>@User.Identity.Name</p>
+    <a asp-controller="Account" asp-action="LogOut">LOGOUT</a>
+}
+else
+{
+    <h2>My Account</h2>
+    <p>Please login to access your account</p>
+}r.Identity.Name</h2>

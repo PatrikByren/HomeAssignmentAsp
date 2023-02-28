@@ -1,0 +1,14 @@
+﻿@{
+    var discoverMore = new MenuLinkModel { Controller = "Product", Action = "Sale", Name = "Discover More" };
+}
+<div class="col">
+    <div class="card">
+        <div class='container'>
+            <p class='title-2'>UP TO SELL</p>
+            <h5 class="card-title">50% OFF</h5>
+            <p class='title-1'>Get The Best Price</p>
+            <p class='info'>Get the best daily offer et accusam et<br />justo duo dolores et ea rebum. stet<br />clita kasd gubergren no sea taki</p>
+            <partial name="~/Views/Shared/Partials/Individuals/_MenuLink.cshtml" model="@discoverMore" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model CreateProductModel
+
+<section class='newproduct'>
+    <div class='container'>
+        <div class='formcontainer'>
+            <form method="post" asp-action="CreateProduct" class="row g-3" novalidate>
+                <div class="row">
+                    <div class="registration-form-error-summary">
+                        <div asp-validation-summary="ModelOnly" class="error"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Product Name" class="form-label">@Html.DisplayNameFor(m => m.Name)</label>
+                        <input asp-for="Name" type="text" class="form-control" id='inputproductname' aria-label="Product name" />
+                        <span asp-validation-for="Name" class="error"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputsku" class="form-label">@Html.DisplayNameFor(m => m.SKU)</label>
+                        <input asp-for="SKU" type="text" class="form-control" id='inputsku' aria-label="sku" />
+                        <span asp-validation-for="SKU" class="error"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputprice" class="form-label">@Html.DisplayNameFor(m => m.Price)</label>
+                        <input asp-for="Price" type="text" class="form-control" id="inputprice" />
+                        <span asp-validation-for="Price" class="error"></span>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputdiscountprice" class="form-label">@Html.DisplayNameFor(m => m.DiscountPrice)</label>
+                        <input asp-for="DiscountPrice" type="text" class="form-control" id="discountprice" />
+                        <span asp-validation-for="DiscountPrice" class="error"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputbrand" class="form-label">@Html.DisplayNameFor(m => m.Brand)</label>
+                        <input asp-for="Brand" type="text" class="form-control" id="inputbrand" />
+                        <span asp-validation-for="Brand" class="error"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCategory" class="form-label">@Html.DisplayNameFor(m => m.Category)</label>
+                        <input asp-for="Category" type="text" class="form-control" id="inputCategory" />
+                        <span asp-validation-for="Category" class="error"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputColor" class="form-label">@Html.DisplayNameFor(m => m.Color)</label>
+                        <input asp-for="Color" type="text" class="form-control" id="inputColor" />
+                        <span asp-validation-for="Color" class="error"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputReleseYear" class="form-label">@Html.DisplayNameFor(m => m.ReleseYear)</label>
+                        <input asp-for="ReleseYear" type="text" class="form-control" id="inputReleseYear" />
+                        <span asp-validation-for="ReleseYear" class="error"></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="inputShortDescription" class="form-label">@Html.DisplayNameFor(m => m.ShortDescription)</label>
+                    <input asp-for="ShortDescription" type="text" class="form-control" id="inputShortDescription" />
+                    <span asp-validation-for="ShortDescription" class="error"></span>
+                </div>
+                <div class="col-12">
+                    <label for="inputLongDescription" class="form-label">@Html.DisplayNameFor(m => m.LongDescription)</label>
+                    <input asp-for="LongDescription" type="text" class="form-control" id="inputLongDescription" />
+                    <span asp-validation-for="LongDescription" class="error"></span>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

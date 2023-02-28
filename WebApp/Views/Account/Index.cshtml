@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Search";
+
+    var subHeading = new SubHeadingModel { Title = "SEARCH", Subtitle = "HOME. PRODUCT SEARCH" };
+
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    subHeading.Title = "MY ACCOUNT";
+    subHeading.Subtitle = "WELLCOME. " + @User.FindFirst("DisplayName").Value;
+    <partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
+    <div class="container">
+        <p>
+            <a asp-controller="Account" asp-action="LogOut">LOGOUT</a> - @User.Identity.Name
+        </p>
+    </div>
+}
+else
+{
+    subHeading.Title = "MY ACCOUNT";
+    subHeading.Subtitle = "Please login to access your account";
+    <partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
+
+}
+

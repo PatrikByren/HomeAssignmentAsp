@@ -1,0 +1,17 @@
+﻿@model List<UserProfileModel>
+@{
+    ViewData["Title"] = "Admin";
+
+
+    var subHeading = new SubHeadingModel { Title = "ADMIN", Subtitle = "INDEX" };
+
+}
+<partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
+
+<div class="container">
+    @foreach (var contact in Model)
+    {
+        <partial name="~/Views/Shared/Partials/Individuals/Users/_GetAllUsers.cshtml" model="@contact" />
+    }   
+</div>
+

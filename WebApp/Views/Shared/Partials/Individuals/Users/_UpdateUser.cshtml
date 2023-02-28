@@ -1,0 +1,81 @@
+﻿@model UserProfileModel
+
+
+
+
+<div class='updateuser'>
+    <form method="post" asp-controller="Account" asp-action="UpdateUser" asp-route-ReturnUrl="@Model.ReturnUrl" class="row g-3">
+        <div class="row">
+            <div class="registration-form-error-summary">
+                <div asp-validation-summary="ModelOnly" class="error"></div>
+            </div>
+            <div class="col-4 hide">
+                <label for="inputId" class="form-label">ID</label>
+                <input asp-for="Id" type="text" class="form-control" id="inputId" />
+                <span asp-validation-for="Id" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputFirstName" class="form-label">FirstName</label>
+                <input asp-for="FirstName" type="text" class="form-control" id="inputFirstName" />
+                <span asp-validation-for="FirstName" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputLastName" class="form-label">LastName</label>
+                <input asp-for="LastName" type="text" class="form-control" id="inputLastName" />
+                <span asp-validation-for="LastName" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputPhoneNumber" class="form-label">PhoneNumber</label>
+                <input asp-for="PhoneNumber" type="text" class="form-control" id="inputPhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputStreetName" class="form-label">StreetName</label>
+                <input asp-for="StreetName" type="text" class="form-control" id="inputStreetName" />
+                <span asp-validation-for="StreetName" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputPostalCode" class="form-label">PostalCode</label>
+                <input asp-for="PostalCode" type="text" class="form-control" id="inputPostalCode" />
+                <span asp-validation-for="PostalCode" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputCity" class="form-label">City</label>
+                <input asp-for="City" type="text" class="form-control" id="inputCity" />
+                <span asp-validation-for="City" class="error"></span>
+            </div>
+            <div class="col-4">
+                <label for="inputCompany" class="form-label">Company</label>
+                <input asp-for="Company" type="text" class="form-control" id="inputCompany" />
+                <span asp-validation-for="Company" class="error"></span>
+            </div>
+            <div class="col-8">
+                <label for="roleselct" class="form-label">Change role</label>
+                <select asp-for="Role" class="form-select" id="roleselct" aria-label="Default select example">
+                        <option selected>CHANGE USER ROLE</option>
+                        <option value="User">User</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="Administrator">Administrator</option>
+                        <option value="User Manager">User Manager</option>
+                 </select>
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-outline-secondary">UPDATE USER</button>
+            </div>
+
+    </form>
+    <form method="post" asp-controller="Account" asp-action="DeleteUser" asp-route-ReturnUrl="@Model.ReturnUrl" class="row g-3">
+        <div class="row">
+            <div class="registration-form-error-summary">
+                <div asp-validation-summary="ModelOnly" class="error"></div>
+            </div>
+            <div class="col-12 hide">
+                <label for="inputId" class="form-label">Enter the ID of the User you want to DELETE</label>
+                <input asp-for="Id" type="text" class="form-control" id="inputId" />
+                <span asp-validation-for="Id" class="error"></span>
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary">DELETE USER</button>
+            </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+﻿@model ProductCardModel
+
+<div class="col">
+    <div class="card">
+        @if (Model.ImgUrl != string.Empty)
+        {
+            <img src="~/Images/@Model.ImgUrl" class="card-img-top" alt="@Model.ImgAlt" />
+        }
+        else
+        {
+            <img src="~/Images/Logopic.png" class="card-img-top" alt="no picture avalible" />
+        }
+        @if (@Model.New == true)
+        {
+        <div class='hide'><p class='new'>New</p></div>
+        }
+        else
+        {<div class='show'><p class='new'>New</p></div>}
+        <div class="card-body">
+            
+            <span>
+                <h5>@Model.Name</h5>
+                <button class='addtocartbutton'><i class="fa-sharp fa-regular fa-cart-plus"></i></button>
+            </span>
+            <div>
+                @if (Model.DiscountPrice != 0)
+                {
+                    <p class='price lineinprice'>$@Model.Price</p>
+                    <p class='discontprice'>$@Model.DiscountPrice</p>
+                }
+                else
+                {
+                    <p class='price'>$@Model.Price</p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

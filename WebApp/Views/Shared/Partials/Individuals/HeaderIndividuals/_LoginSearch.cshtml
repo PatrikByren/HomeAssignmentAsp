@@ -1,0 +1,13 @@
+﻿
+
+<nav class='loginsearch'>
+    <a asp-controller="Search" asp-action="Index"><i class="fa-regular fa-magnifying-glass"></i></a>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a asp-controller="Account" asp-action="Index">MyAccount</a>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="Login">Login</a>
+    }
+</nav>

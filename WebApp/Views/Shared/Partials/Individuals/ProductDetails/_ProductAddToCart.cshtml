@@ -1,0 +1,37 @@
+﻿@model ProductDescriptionModel
+@{
+    var product = Model.Cards.FirstOrDefault(x => x.SKU == Model.Sku);
+
+    var volymValue = 1;
+}
+
+<section class='productaddtocart'>
+    <p class='title-2'>@product.Name</p>
+    <p class='content'>@product.ShortDescription</p>
+    <hr />
+    @if(@product.TotalComments == 0){<p>No Reviews on this product yet!</p>}
+    else{<partial name="~/Views/Shared/Partials/Individuals/ProductDetails/_Rating.cshtml" model="@Model"/>}
+    @if (product.DiscountPrice != 0)
+    {
+        <p class='price lineinprice'>$@product.Price</p> <p class='title-3'>$@product.DiscountPrice</p>
+    }
+    else{<p class='title-3'>$@product.Price</p>}
+
+
+        <section>
+            <div class='volym'>
+            <button class='btn minus' >-</button>
+            <input id="volym-input" class='inputnumber' type="number" min="1" value="@volymValue" />
+            <button class='btn plus' >+</button>
+            <button class='btn addtocart'>Add to Cart <i class="fa-regular fa-bag-shopping"></i></button>
+        </div>
+    </section>
+    <div class='extrainfo'>
+        <section class='colorpic'><button class='red'></button><button class='yellow'></button><button class='green'></button></section>
+        <div><p class='sku'>SKU:</p> <p class='skunumber'>@product.SKU</p></div>
+    </div>
+    <button class='btn addtowishlist'>Add to wishlist</button>
+    <div class='categorycontainer'><p class='category'>Category:</p><p class='categorys'>@product.Category</p></div>
+
+</section>
+

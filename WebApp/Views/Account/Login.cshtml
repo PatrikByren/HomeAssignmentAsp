@@ -1,0 +1,43 @@
+﻿@model SignInForm
+@{
+    ViewData["Title"] = "Sign in";
+}
+@{
+    var link = new MenuLinkModel { Controller = "Account", Action = "Register", Name = "Dont have an account yet?" };
+}
+
+<section class='loginform'>
+    <div class='container'>
+        <div class='formcontainer'>
+            <form class="column" method="post" asp-action="Login" asp-route-ReturnUrl="@Model.ReturnUrl" novalidate>
+                    <div class="registration-form-error-summary">
+                        <div asp-validation-summary="ModelOnly" class="error"></div>
+                    </div>
+                <p>Please Login to Your Account</p>
+                <div class="col">
+                    <label for="inputEmail4" class="form-label">Email*</label>
+                    <partial name="~/Views/Shared/Partials/Individuals/_MenuLink.cshtml" model="@link" class="link" />
+                    <input asp-for="Email" type="email" class="form-control" id="inputEmail4" />
+                    <span asp-validation-for="Email" class="error"></span>
+                </div>
+                <div class="col">
+                    <div class='btncontainer'><label for="inputPassword4" class="form-label">Password*</label> <button>Forgot Your Password?</button></div>
+                    <input asp-for="Password" type="password" class="form-control" id="inputPassword4" />
+                    <span asp-validation-for="Password" class="error"></span>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck" />
+                        <label class="form-check-label" for="gridCheck">
+                            Please keep me logged in
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,14 @@
+﻿@model ProductDescriptionModel
+
+
+@{
+    ViewData["Title"] = "Product";
+
+    var subHeading = new SubHeadingModel { Title = "SHOP", Subtitle = "HOME. PRODUCT DETAILS" };
+
+
+}
+<partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
+<partial name="~/Views/Shared/Partials/Sections/_ProductDetails.cshtml" model="@Model" />
+<partial name="~/Views/Shared/Partials/Sections/_RelatedProducts.cshtml" model="@Model" />
+<partial name="~/Views/Shared/Partials/Individuals/Carousel/_AddCarousel.cshtml" model="@Model" />

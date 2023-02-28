@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    var subHeading = new SubHeadingModel { Title = "CREATE PRODUCT", Subtitle = "TO DATABASE" };
+
+}
+<partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
+<partial name="~/Views/Shared/Partials/Sections/_CreateProduct.cshtml" action="CreateProduct" />
+
+
+
