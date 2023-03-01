@@ -6,12 +6,7 @@ html, body {
     font-weight: 400;
     font-size: 16px;
 }
-.updateuser {
-    margin-bottom: 1rem;
-}
-.lineinprice {
-    text-decoration: line-through;
-}
+
 p {
     font-family: "Roboto";
     font-weight: 400;
@@ -60,18 +55,17 @@ p {
         color: #FA3150;
     }
 
-.show {
+/*.show{
     display: flex;
     width: 0;
     height: 0;
     border-top: 50px solid black;
     border-bottom: 50px solid transparent;
     border-left: 50px solid transparent;
-    position: absolute;
-    right: 0;
+    position:absolute;
+    right:0;
     top: 0;
-}
-
+}*/
 .new {
     position: absolute;
     top: -41px;
@@ -107,6 +101,18 @@ p {
         height: 820px;
         width: 100%;
     }
+
+.delete {
+    background: #F29423;
+}
+
+.updateuser {
+    margin-bottom: 1rem;
+}
+
+.lineinprice {
+    text-decoration: line-through;
+}
 
 .header {
     display: grid;
@@ -909,14 +915,3 @@ p {
                 background-color: #FAFAFA;
                 border: none;
             }
-.delete {
-    background: #F29423;
-}
-.updateuser {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
-
-.lineinprice {
-    text-decoration: line-through;
-}

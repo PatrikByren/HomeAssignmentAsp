@@ -13,7 +13,7 @@ namespace WebApp.Services
             _filePath = filePath;
         }
 
-        public async Task Save(string content)
+        /*public async Task Save(string content)
         {
             try
             {
@@ -39,6 +39,6 @@ namespace WebApp.Services
             }
 
             catch (Exception ex) { Debug.WriteLine(ex.Message); return string.Empty; }
-        }
+        }*/
     }
 }

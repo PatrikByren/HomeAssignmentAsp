@@ -1,16 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home";
-    string SKU = "";
 }
 <partial name="~/Views/Shared/Partials/Sections/_Showcase.cshtml" />
-
-<div>
-    <form method="get" asp-controller="Product" asp-action="Index">
-        <input type="hidden" name="skuForm" value="11" />
-        <button type="submit">Skicka</button>
-    </form>
-</div>
-
 <partial name="~/Views/Shared/Partials/Sections/_BestCollection.cshtml" />
 <partial name="~/Views/Shared/Partials/Sections/_DiscountShowcase.cshtml" />
 <partial name="~/Views/Shared/Partials/Sections/_TopSellingProducts.cshtml" />

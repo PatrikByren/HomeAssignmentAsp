@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="ViewModel\" />
+    <Folder Include="wwwroot\Images\Profiles\" />
   </ItemGroup>
 
   <ItemGroup>

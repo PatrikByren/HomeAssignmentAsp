@@ -1,7 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Search";
+﻿@model UserAccountModel
+@{
+    ViewData["Title"] = "My Account";
 
-    var subHeading = new SubHeadingModel { Title = "SEARCH", Subtitle = "HOME. PRODUCT SEARCH" };
+    var subHeading = new SubHeadingModel { Title = ".", Subtitle = "." };
 
 }
 
@@ -14,7 +15,29 @@
         <p>
             <a asp-controller="Account" asp-action="LogOut">LOGOUT</a> - @User.Identity.Name
         </p>
+            <div>
+            @if (@Model.PhoneNumber != null)
+            {
+            <p>PhoneNumber: @Model.PhoneNumber </p>
+            }
+            @if (@Model.Company != null)
+            {
+                <p>Company: @Model.Company </p>
+            }
+
+            <p>Address: <br/>
+                        @Model.FirstName @Model.LastName <br/>
+                        @Model.StreetName<br/>
+                        @Model.PostalCode @Model.City<br />
+                </p>
+                    @if (@Model.ImageName != null)
+            {
+                <p> <img src="~/Images/Profiles/@Model.ImageName" alt="Profile image" /> </p>
+            }
+            </div>
+
     </div>
+
 }
 else
 {

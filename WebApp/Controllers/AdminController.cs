@@ -34,12 +34,6 @@ namespace WebApp.Controllers
             _userService = userService;
         }
 
-
-      
-        /*public IActionResult Index()
-        {
-            return View();
-        }*/
         [AllowAnonymous]
         public async Task<IActionResult> Configure(string ReturnUrl = null!)
         {
@@ -124,9 +118,14 @@ namespace WebApp.Controllers
             return View(product);
         }
         [HttpGet]
-        public async Task<IActionResult> Index()//GetAllUsers()
+        public async Task<IActionResult> Index(string ReturnUrl = null!)
         {
+            /*var viewModel = new AdminIndexViewModel();
+            viewModel.Users = await _userService.GetAllUsersAsync();
+            viewModel.ReturnUrl = ReturnUrl ?? Url.Context("/");*/
+
             var userProfileModel = await _userService.GetAllUsersAsync();
+            
             return View(userProfileModel);
         }
     }

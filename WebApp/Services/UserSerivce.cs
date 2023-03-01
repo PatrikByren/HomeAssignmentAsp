@@ -37,7 +37,7 @@ namespace WebApp.Services
                         City = userProfileModel.City,
                         PostalCode = userProfileModel.PostalCode,
                         Company = userProfileModel.Company,
-
+                        ImageName = userProfileModel.ImageName
                     };
                 }
             }
@@ -68,9 +68,9 @@ namespace WebApp.Services
                         if (userProfileModel.Role != null!)
                         try {
                             var userProfile = await _identityContext.UserProfiles.FindAsync(userProfileModel.Id);
-                            var identityUser = await _identityContext.Users.FindAsync(userProfile.UserId);
-                            //await _userManager.RemoveFromRolesAsync(identityUser,);
-                            await _userManager.AddToRoleAsync(identityUser, userProfileModel.Role); 
+                            var identityUser = await _identityContext.Users.FindAsync(userProfile!.UserId);
+                                await _userManager.RemoveFromRolesAsync(identityUser!, new List<string>() { "User", "Product Manager", "User Manager", "Administrator" });
+                                await _userManager.AddToRoleAsync(identityUser!, userProfileModel.Role);
                             }
                         catch { }
 

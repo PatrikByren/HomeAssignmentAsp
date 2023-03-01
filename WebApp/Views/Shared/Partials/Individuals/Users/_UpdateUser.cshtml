@@ -5,7 +5,7 @@
 
 <div class="updateuser">
     <p title-3>AccountName: @Model.Email | ID: @Model.Id </p>
-    <form method="post" asp-controller="Account" asp-action="UpdateUser" asp-route-ReturnUrl="@Model.ReturnUrl">
+    <form method="post" asp-controller="Account" asp-action="UpdateUser" asp-route-ReturnUrl="@Model.ReturnUrl" novalidate>
         <div class="row">
             <div class="registration-form-error-summary">
                 <div asp-validation-summary="ModelOnly" class="error"></div>

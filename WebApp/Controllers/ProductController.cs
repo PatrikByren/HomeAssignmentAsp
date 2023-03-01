@@ -16,7 +16,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string skuForm)
         {
-            if (skuForm == null!) skuForm = "11";
+            if (skuForm == null!) skuForm = "141516";
             try
             {
                 var productsList = await _productService.GetProductsAsync();

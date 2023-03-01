@@ -7,7 +7,7 @@
 <section class='registeraccount'>
     <div class='container'>
         <div class='formcontainer'>
-            <form class="row g-3" method="post" asp-action="Register" asp-route-ReturnUrl="@Model.ReturnUrl" novalidate>
+            <form class="row g-3" method="post" asp-action="Register" enctype="multipart/form-data" asp-route-ReturnUrl="@Model.ReturnUrl" novalidate>
                 <div class="row">
                     <div class="registration-form-error-summary">
                         <div asp-validation-summary="ModelOnly" class="error"></div>
@@ -70,8 +70,8 @@
 
                 <div class="col mb-12">
                     <label for="inputGroupFile02" class="form-label">Upload Profile Image (optional)</label>
-                    <input asp-for="ImgUrl" type="file" class="form-control" id="inputGroupFile02" />
-                    <span asp-validation-for="ImgUrl" class="error"></span>
+                    <input asp-for="ProfileImage" accept="/*" type="file" class="form-control" id="inputGroupFile02" />
+                    <span asp-validation-for="ProfileImage" class="error"></span>
                 </div>
                 <div class="col-12">
                     <div class="form-check">

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
 using System.Globalization;
 using WebApp.Context;
 using WebApp.Models.Entities;
@@ -25,8 +27,15 @@ namespace WebApp.Controllers
             _auth = auth;
             _userSerivce = userSerivce;
         }
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
+            var userInfo = @User.FindFirst("UserId").Value;
+            if (userInfo != null)
+            {
+                var userModel = await _userSerivce.GetUserAccountAsync(userInfo);
+                return View(userModel);
+            }
             return View();
         }
 
@@ -44,6 +53,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(SignUpForm form)
         {
+            if(form.TermsAndAggrements != true) 
+            { ModelState.AddModelError(string.Empty, "You have to check Terms And Aggrements"); }
             if(ModelState.IsValid)
             {
                 if(await _userManager.Users.AnyAsync(x => x.Email == form.Email))
@@ -84,7 +95,7 @@ namespace WebApp.Controllers
 
             return LocalRedirect("/");
         }
-        public IActionResult UserHandler()
+        /*public IActionResult UserHandler()
         {
             return View();
         }
@@ -98,7 +109,8 @@ namespace WebApp.Controllers
                 return View(userAccount);
             }
             return View();
-        }
+        }*/
+        [Authorize]
         public async Task<IActionResult> UpdateUser(UserProfileModel user)
         {
             if (ModelState.IsValid)
@@ -109,6 +121,7 @@ namespace WebApp.Controllers
             ModelState.AddModelError(string.Empty, "Changes not saved!");
             return LocalRedirect(user.ReturnUrl ?? Url.Content("~/"));
         }
+        [Authorize]
         public async Task<IActionResult> DeleteUser(UserProfileModel user)
         {
             var id = user.Id;
