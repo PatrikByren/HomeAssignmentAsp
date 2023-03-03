@@ -15,6 +15,7 @@ namespace WebApp.Models.Entities
         public int? ReviewsId { get; set; }
         public int ReleseYearId { get; set; }
         public int? ImageId { get; set; }
+        public string? ImageName { get; set; }
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = new DateTime();
         public ICollection<ProductReviewEntity>? Reviews { get; set; } = new List<ProductReviewEntity>();

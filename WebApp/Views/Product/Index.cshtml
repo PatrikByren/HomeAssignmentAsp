@@ -1,6 +1,4 @@
 ﻿@model ProductDescriptionModel
-
-
 @{
     ViewData["Title"] = "Product";
 
@@ -8,7 +6,16 @@
 
 
 }
+@if(Model.Sku == null!)
+{
+    <h1 class="container">Choose product!</h1>
+}
+else
+{
 <partial name="~/Views/Shared/Partials/Sections/_SubHeading.cshtml" model="@subHeading" />
 <partial name="~/Views/Shared/Partials/Sections/_ProductDetails.cshtml" model="@Model" />
 <partial name="~/Views/Shared/Partials/Sections/_RelatedProducts.cshtml" model="@Model" />
 <partial name="~/Views/Shared/Partials/Individuals/Carousel/_AddCarousel.cshtml" model="@Model" />
+
+}
+

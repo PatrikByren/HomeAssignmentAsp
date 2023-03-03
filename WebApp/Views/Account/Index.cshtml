@@ -30,14 +30,13 @@
                         @Model.StreetName<br/>
                         @Model.PostalCode @Model.City<br />
                 </p>
+            <p><a asp-action="updateinfo" class="btn">Update my info -> </a></p>
                     @if (@Model.ImageName != null)
             {
-                <p> <img src="~/Images/Profiles/@Model.ImageName" alt="Profile image" /> </p>
+                <p> <img class="img-thumbnail" src="~/Images/Profiles/@Model.ImageName" alt="Profile image" /> </p>
             }
             </div>
-
     </div>
-
 }
 else
 {

@@ -1,35 +1,27 @@
-﻿
+﻿@model ProductDescriptionModel
 @{
-    var product = new ProductCardModel { ImgUrl = "black-dress.png", ImgAlt = "Black-dress", Name = "Black Dress", Price = 100, DiscountPrice = 80, New = true };
+    var product = Model.Cards.FirstOrDefault(x => x.SKU == Model.Sku);
+    if (product.ImgUrl == null!)
+    {
+        product.ImgUrl = "Logopic.png";
+    }
 }
 
 <div class='productdescription'>
     <div class='container'>
-        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, maiores.</h4>
+        <div class="headercontainer"><h4>@product.ShortDescription</h4></div>
         <div class='textimage'>
             <div class='content'>
                 <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, harum explicabo! Voluptate
-                    praesentium deleniti ullam fuga debitis? Architecto distinctio, doloribus eos dolores sapiente
-                    voluptatem vel quod dignissimos quaerat, aliquam voluptate?
-                </p>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, harum explicabo! Voluptate
-                    praesentium deleniti ullam fuga debitis? Architecto distinctio, doloribus eos dolores sapiente
-                    voluptatem vel quod dignissimos quaerat, aliquam voluptate?
-                </p>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, harum explicabo! Voluptate
-                    praesentium deleniti ullam fuga debitis? Architecto distinctio, doloribus eos dolores sapiente
-                    voluptatem vel quod dignissimos quaerat, aliquam voluptate?
-                </p>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, harum explicabo! Voluptate
-                    praesentium deleniti ullam fuga debitis? Architecto distinctio, doloribus eos dolores sapiente
-                    voluptatem vel quod dignissimos quaerat, aliquam voluptate?
+                    @product.LongDescription
                 </p>
             </div>
-            <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
+            <div class="col">
+                <div class="card">
+                    <img src="~/Images/@product.ImgUrl" class="card-img-top" alt="@product.Name" />
+                </div>
+            </div>
+            @*@<partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />*@
         </div>
     </div>
 </div>

@@ -1,56 +1,34 @@
-﻿@{
-    var products1 = new List<ProductCardModel>
-    {
+﻿@model ProductDescriptionModel
 
-        new ProductCardModel {ImgUrl= "black-dress.png", ImgAlt="Black-dress", Name = "Black Dress", Price=100, DiscountPrice=80, New=true},
-        new ProductCardModel {ImgUrl= "black-set.png", ImgAlt="Black-set", Name = "Black Set", Price=150, DiscountPrice=80, New=false},
-        new ProductCardModel {ImgUrl= "black-white-set.png", ImgAlt="black-white-set", Name = "black-white-set", Price=100, DiscountPrice=98, New=false},
-        new ProductCardModel {ImgUrl= "brown-sweater.png", ImgAlt="brown-sweater", Name = "brown-sweater", Price=120, DiscountPrice=90, New=true},
-        new ProductCardModel {ImgUrl= "brown-watch.png", ImgAlt="brown-watch", Name = "brown-watch", Price=200, DiscountPrice=99, New=false}
+@{
+    var products = Model.Cards.ToList();
+    var list1 = new List<ProductCardModel>();
+    var list2 = new List<ProductCardModel>();
+    if (Model.Cards.Count > 4)
+        for (int i = 0; i < 5;)
+        { list1.Add(products[i]); i++; }
+    if (Model.Cards.Count > 9)
+        for (int i = 5; i < 10;)
+        { list2.Add(products[i]); i++; }
 
-    };
-    var products2 = new List<ProductCardModel>
-    {
-
-
-        new ProductCardModel {ImgUrl= "black-white-set.png", ImgAlt="black-white-set", Name = "black-white-set", Price=100, DiscountPrice=98, New=false},
-        new ProductCardModel {ImgUrl= "blue-tshirt.png", ImgAlt="blue-tshirt", Name = "blue-shirt", Price=100, DiscountPrice=80, New=false},
-        new ProductCardModel {ImgUrl= "brown-watch.png", ImgAlt="brown-watch", Name = "brown-watch", Price=200, DiscountPrice=99, New=false},
-        new ProductCardModel {ImgUrl= "chrome-shoe.png", ImgAlt="chrome-shoe", Name = "chrome-shoe", Price=120, DiscountPrice=90, New=true},
-        new ProductCardModel {ImgUrl= "gray-tshirt.png", ImgAlt="gray-tshirt", Name = "gray-tshirt", Price=200, DiscountPrice=99, New=false}
-    };
-    var products3 = new List<ProductCardModel>
-    {
-
-        new ProductCardModel {ImgUrl= "black-set.png", ImgAlt="Black-set", Name = "Black Set", Price=150, DiscountPrice=80, New=false},
-        new ProductCardModel {ImgUrl= "brown-sweater.png", ImgAlt="brown-sweater", Name = "brown-sweater", Price=120, DiscountPrice=90, New=true},
-        new ProductCardModel {ImgUrl= "brown-watch.png", ImgAlt="brown-watch", Name = "brown-watch", Price=200, DiscountPrice=99, New=false},
-        new ProductCardModel {ImgUrl= "brown-watch.png", ImgAlt="chrome-shoe", Name = "chrome-shoe", Price=120, DiscountPrice=90, New=true},
-        new ProductCardModel {ImgUrl= "gray-tshirt.png", ImgAlt="gray-tshirt", Name = "gray-tshirt", Price=200, DiscountPrice=99, New=false}
-    };
 }
+
 
 
 <section class='addcarousel'>
     <div class='container'>
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleInterval" class="carousel slide" >
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                    @foreach (var product in products1)
+                <div class="carousel-item active" >
+                    @foreach (var product in list1)
                     {
                         <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
                     }
                 </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    @foreach (var product in products2)
+                <div class="carousel-item" >
+                    @foreach (var product in list2)
                     {
                             <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
-                    }
-                </div>
-                <div class="carousel-item" data-bs-interval="4000">
-                    @foreach (var product in products3)
-                    {
-                        <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
                     }
                 </div>
             </div>

@@ -55,6 +55,10 @@
                         <input asp-for="ReleseYear" type="text" class="form-control" id="inputReleseYear" />
                         <span asp-validation-for="ReleseYear" class="error"></span>
                     </div>
+                    <div class="col-md-6">
+                        <label for="inputImageName" class="form-label">@Html.DisplayNameFor(m => m.ImageName)</label>
+                        <input asp-for="ImageName" type="text" class="form-control" id="inputImageName" />
+                    </div>
                 </div>
                 <div class="col-12">
                     <label for="inputShortDescription" class="form-label">@Html.DisplayNameFor(m => m.ShortDescription)</label>

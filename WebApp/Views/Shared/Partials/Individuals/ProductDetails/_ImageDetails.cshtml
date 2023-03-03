@@ -1,9 +1,19 @@
-﻿        <div class='imagedetails'>
-            <div class='bigpic'><img src=~/Images/showcase-img.png alt="..." /></div>
+﻿@model ProductDescriptionModel
+@{
+    var images = Model.Cards.FirstOrDefault(x => x.SKU == Model.Sku);
+    if(images.ImgUrl == null!)
+    {
+        images.ImgUrl = "Logopic.png";
+    }
+}
+
+
+        <div class='imagedetails'>
+    <div class='bigpic'> <img src=~/Images/@images.ImgUrl alt="@images.Name" /></div>
             <div class='smallpics'>
-                <img src=~/Images/black-set.png alt="..." />
-                <img src=~/Images/black-set.png alt="..." />
-                <img src=~/Images/black-white-set.png alt="..." />
-                <img src=~/Images/gray-tshirt.png alt="..." />
+                <img src=~/Images/@images.ImgUrl alt="@images.Name" />
+         <img src=~/Images/@images.ImgUrl alt="@images.Name" />
+        <img src=~/Images/@images.ImgUrl alt="@images.Name" />
+        <img src=~/Images/@images.ImgUrl alt="@images.Name" />
             </div>
         </div>

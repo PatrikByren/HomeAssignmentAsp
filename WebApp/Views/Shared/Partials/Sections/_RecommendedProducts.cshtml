@@ -16,9 +16,15 @@
             {
                 <div class='recommendedproductscontainer'>
                         <partial name="~/Views/Shared/Partials/Individuals/_ProductCard.cshtml" model="@product" />
-                    <p>@comments.Content</p>
+                        
+                    <p>@if(product.Reviews.Count != 0) 
+                        {
+                            @product.Reviews[0].Comments
+                        }
+
+                    </p>
                 <div class='post'>
-                    <p>POST BY: @comments.PostBy</p>
+                            <p>POST BY:@if(product.Reviews.Count != 0) @product.Reviews[0].PostBy</p>
                     <p>COMMENTS: @product.TotalComments</p>
                 </div>
         </div>

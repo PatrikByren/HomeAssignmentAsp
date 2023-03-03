@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApp.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Services
 {
@@ -12,12 +13,15 @@ namespace WebApp.Services
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IdentityContext _identityContext;
+        private readonly ProfileService _profileService;
 
-        public UserSerivce(UserManager<IdentityUser> userManager, IdentityContext identityContext)
+        public UserSerivce(UserManager<IdentityUser> userManager, IdentityContext identityContext, ProfileService profileService)
         {
             _userManager = userManager;
             _identityContext = identityContext;
+            _profileService = profileService;
         }
+        [HttpGet]
         public async Task<UserAccountModel> GetUserAccountAsync(string id)
         {
             var identityProfile = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
@@ -28,7 +32,8 @@ namespace WebApp.Services
                 {
                     return new UserAccountModel
                     {
-                        Id = identityProfile.Id,
+                        Id = userProfileModel.Id.ToString(),
+                        UserId = identityProfile.Id,
                         FirstName = userProfileModel.FirstName,
                         LastName = userProfileModel.LastName,
                         Email = identityProfile.Email!,
@@ -45,6 +50,7 @@ namespace WebApp.Services
 
 
         }
+        
         [HttpPut]
         public async Task<IActionResult> UpdateUserAsync(UserProfileModel userProfileModel)
         {
@@ -52,6 +58,7 @@ namespace WebApp.Services
                 try
                 {
                     var userProfileEntity = await _identityContext.UserProfiles.FindAsync(userProfileModel.Id);
+                    //if (userProfileEntity == null) { await _identityContext.UserProfiles.FindAsync(userProfileModel.Us); }
                     if (userProfileEntity != null)
                     {
                         userProfileEntity.FirstName = userProfileModel.FirstName;
@@ -60,8 +67,12 @@ namespace WebApp.Services
                         userProfileEntity.City = userProfileModel.City;
                         userProfileEntity.PostalCode = userProfileModel.PostalCode;
                         userProfileEntity.Company = userProfileModel.Company;
-                        userProfileEntity.StreetAdress = userProfileModel.StreetName; 
+                        userProfileEntity.StreetAdress = userProfileModel.StreetName;
                         userProfileEntity.PostalCode = userProfileModel.PostalCode.ToString();
+                        if (userProfileModel.NewProfileImage != null)
+                        {
+                            userProfileEntity.ImageName = await _profileService.UploadProfileImageAsync(userProfileModel.NewProfileImage!);
+                        }
 
                         _identityContext.Entry(userProfileEntity).State = EntityState.Modified;
                         await _identityContext.SaveChangesAsync();

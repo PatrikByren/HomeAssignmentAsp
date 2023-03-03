@@ -17,6 +17,8 @@ namespace WebApp.Models.Products
         public decimal Price { get; set; }
         [Display(Name = "Discount Price(Optional)")]
         public decimal? DiscountPrice { get; set; }
+        [Display(Name = "Images name: (The image most be in wwwroot/Images)")]
+        public string? ImageName { get; set; }
         [Required]
         [Display(Name = "Brand")]
         public string Brand { get; set; } = string.Empty;

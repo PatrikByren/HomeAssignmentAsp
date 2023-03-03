@@ -698,19 +698,25 @@ p {
     margin: 3rem 2rem;
 }
 
-    .productdetails .container .navbarextrainfoproduct a {
+    .productdetails .container .navbarextrainfoproduct button {
         text-decoration: none;
         color: #AEAEAE;
-        padding: 1rem 3rem;
+        padding: 1rem 5rem;
         margin: 1.5rem 0;
+        border-radius: 0;
+
+    }
+    .productdetails .container .navbarextrainfoproduct .nav-item .active {
+        color: white;
+        background-color: #FA3150;
     }
 
-        .productdetails .container .navbarextrainfoproduct a:hover {
+        .productdetails .container .navbarextrainfoproduct button:hover {
             color: white;
             background-color: #FA3150;
         }
 
-        .productdetails .container .navbarextrainfoproduct a:active {
+        .productdetails .container .navbarextrainfoproduct abutton:active {
             background-color: #FA3150;
         }
 
@@ -722,6 +728,7 @@ p {
         font-family: "Poppins", sans-serif;
         font-size: 24px;
         font-weight: 600;
+        margin: 0 0 2rem 0
     }
 
     .productdetails .container .productdescription .textimage {
@@ -915,3 +922,14 @@ p {
                 background-color: #FAFAFA;
                 border: none;
             }
+.cardbutton {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+}
+.img-thumbnail{
+    height: 200px;
+    width: auto;
+}

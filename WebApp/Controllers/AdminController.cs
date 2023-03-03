@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Data;
 using WebApp.Context;
 using WebApp.Models.Entities;
@@ -109,10 +110,11 @@ namespace WebApp.Controllers
             if (ModelState.IsValid)
             {
                 if (product.DiscountPrice == null) product.DiscountPrice = 0;
-                await _productService.CreateProductAsync(product);
-                
-                //ModelState.AddModelError(string.Empty, "Created an Product");
+                var result = await _productService.CreateProductAsync(product);
+                ModelState.Clear();
+                ModelState.AddModelError(string.Empty, "Product Created!");
                 return View();
+
             }
             ModelState.AddModelError(string.Empty, "Unable to create an Product");
             return View(product);

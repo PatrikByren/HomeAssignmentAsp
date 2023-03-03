@@ -2,7 +2,11 @@
 
 <div class="col">
     <div class="card">
-        @if (Model.ImgUrl != string.Empty)
+        
+    <form method="get" asp-controller="Product" asp-action="Index">
+        <input type="hidden" name="skunumber" value="@Model.SKU" />
+      <button class="cardbutton" type="submit">
+        @if (Model.ImgUrl != null!)
         {
             <img src="~/Images/@Model.ImgUrl" class="card-img-top" alt="@Model.ImgAlt" />
         }
@@ -10,12 +14,15 @@
         {
             <img src="~/Images/Logopic.png" class="card-img-top" alt="no picture avalible" />
         }
+        </button>
+        </form>
         @if (@Model.New == true)
         {
         <div class='hide'><p class='new'>New</p></div>
         }
         else
         {<div class='show'><p class='new'>New</p></div>}
+
         <div class="card-body">
             
             <span>

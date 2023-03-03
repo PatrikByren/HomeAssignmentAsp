@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
@@ -35,6 +36,29 @@ namespace WebApp.Controllers
             {
                 var userModel = await _userSerivce.GetUserAccountAsync(userInfo);
                 return View(userModel);
+            }
+            return View();
+        }
+        public async Task<IActionResult> UpdateInfo()
+        {
+            var userInfo = @User.FindFirst("UserId").Value;
+            if (userInfo != null)
+            {
+                var userModel = await _userSerivce.GetUserAccountAsync(userInfo);
+                var user = new UserProfileModel
+                {
+                    Id = Guid.TryParse(userModel.Id, out var id) ? id : Guid.Empty,
+                    FirstName = userModel.FirstName,
+                    LastName = userModel.LastName,
+                    Email = userModel.Email!,
+                    PhoneNumber = int.TryParse(userModel.PhoneNumber, out var phoneNumber) ? phoneNumber : 0,
+                    StreetName = userModel.StreetName,
+                    City = userModel.City,
+                    PostalCode = userModel.PostalCode,
+                    Company = userModel.Company,
+                    ProfileImage = userModel.ImageName
+                };
+                return View(user);
             }
             return View();
         }

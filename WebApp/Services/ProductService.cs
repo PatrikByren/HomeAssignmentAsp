@@ -12,11 +12,13 @@ namespace WebApp.Services
     public class ProductService
     {
         private readonly DataContext _context;
-        
+        private readonly IdentityContext _identityContext;
 
-        public ProductService(DataContext context)
+
+        public ProductService(DataContext context, IdentityContext identityContext)
         {
             _context = context;
+            _identityContext = identityContext;
         }
         public async Task<ProductCardModel> GetOneProductAsync(string sku)
         {
@@ -68,26 +70,34 @@ namespace WebApp.Services
                 {
                     var reviewList = new List<CommentsModel>();
                     int RatingNr = 0;
-                    foreach (var review in await _context.ProductReviews.ToListAsync())
+                    var reviews = await _context.ProductReviews.Where(x => x.ProductSKU == item.SKU).ToListAsync();
+                    foreach (var reviewItem in reviews)
                     {
-                        RatingNr += review.Rating;
-                        reviewList.Add(new CommentsModel
+                        var name = await _identityContext.UserProfiles.FirstOrDefaultAsync(x => x.UserId == reviewItem.UserId);
+                        foreach (var review in reviews)
                         {
-                            Ratings = review.Rating,
-                            Comments = review.Comment ?? ""
-                        });
-                        RatingNr = RatingNr / reviewList.Count;
+                            RatingNr += review.Rating;
+                            reviewList.Add(new CommentsModel
+                            {
+                                Ratings = review.Rating,
+                                Comments = review.Comment ?? "",
+                                PostBy = name?.FirstName + " " ?? null! + name?.LastName ?? null!,
+                            });
+                        }
+                            RatingNr = RatingNr / reviewList.Count;
                     }
                     var price = await _context.Prices.FindAsync(item.PriceId);
                     var description = await _context.ProductDescriptions.FindAsync(item.DescriptionId);
                     var category = await _context.ProductCategories.FindAsync(item.CategoryId);
-                    
+                    //var reviews = await _context.ProductReviews.Where(x => x.ProductSKU == item.SKU).ToListAsync();
+
                     if (item.CreatedAt.AddDays(10) < DateTime.Now)
                     {
                         productCardModel.Add(new ProductCardModel
                         {
                             SKU = item.SKU,
                             Name = item.Name,
+                            ImgUrl = item.ImageName ?? null!,
                             Price = Math.Round(price!.Price, 2),
                             DiscountPrice = Math.Round((decimal)price.DiscountPrice, 2),
                             TotalComments = item.Reviews.Count,
@@ -98,7 +108,7 @@ namespace WebApp.Services
                             Category = category!.Category,
                             CreatedAt = item.CreatedAt,
                             New = true
-                        }) ;
+                        }); 
                     }
                     else
                     {
@@ -107,6 +117,7 @@ namespace WebApp.Services
 
                             SKU = item.SKU,
                             Name = item.Name,
+                            ImgUrl = item.ImageName ?? null!,
                             Price = Math.Round(price!.Price, 2),
                             DiscountPrice = Math.Round((decimal)price.DiscountPrice, 2),
                             TotalComments = item.Reviews.Count,
@@ -174,6 +185,7 @@ namespace WebApp.Services
                 _context.ReleseYears.Add(releseYearEntity);
                 await _context.SaveChangesAsync();
             }
+           
 
             try
             {
@@ -194,7 +206,8 @@ namespace WebApp.Services
                     Color = colorEntity,
                     ReleseYearId= releseYearEntity.Id,
                     ReleseYear= releseYearEntity,
-                    CreatedAt = req.CreatedAt
+                    CreatedAt = req.CreatedAt,
+                    ImageName = req.ImageName
                 };
                 _context.Products.Add(productEntity);
                 await _context.SaveChangesAsync();

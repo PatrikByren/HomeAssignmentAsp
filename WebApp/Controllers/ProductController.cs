@@ -14,13 +14,14 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string skuForm)
+        public async Task<IActionResult> Index(string skunumber)
         {
-            if (skuForm == null!) skuForm = "141516";
+           //if (skuForm == null!) skuForm = "141516";
             try
             {
                 var productsList = await _productService.GetProductsAsync();
-                var products = new ProductDescriptionModel { Cards= productsList, Sku=skuForm };
+                var products = new ProductDescriptionModel { Cards= productsList, Sku=skunumber };
+
                 return View(products);
             }
             catch { return View(); }
