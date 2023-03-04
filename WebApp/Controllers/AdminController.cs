@@ -22,10 +22,11 @@ namespace WebApp.Controllers
         private readonly IdentityContext _identityContext;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserSerivce _userService;
+        private readonly AuthService _authService;
 
 
 
-        public AdminController(ProductService productService, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IdentityContext identityContext, RoleManager<IdentityRole> roleManager, UserSerivce userService)
+        public AdminController(ProductService productService, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IdentityContext identityContext, RoleManager<IdentityRole> roleManager, UserSerivce userService, AuthService authService)
         {
             _productService = productService;
             _userManager = userManager;
@@ -33,6 +34,7 @@ namespace WebApp.Controllers
             _identityContext = identityContext;
             _roleManager = roleManager;
             _userService = userService;
+            _authService = authService;
         }
 
         [AllowAnonymous]
@@ -54,45 +56,11 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(!await _roleManager.Roles.AnyAsync())
-                {
-                    try { await _roleManager.CreateAsync(new IdentityRole("Administrator")); } catch { }
-                    try { await _roleManager.CreateAsync(new IdentityRole("User Manager")); } catch { }
-                    try { await _roleManager.CreateAsync(new IdentityRole("Product Manager")); } catch { }
-                    try { await _roleManager.CreateAsync(new IdentityRole("User")); } catch { }
-                }
-
-
-                var identityUser = new IdentityUser
-                {
-                    Email = form.Email,
-                    UserName = form.Email
-                };
-                var result = await _userManager.CreateAsync(identityUser, form.Password);
-                if (result.Succeeded)
-                {
-                    _identityContext.UserProfiles.Add(new UserProfileEntity
-                    {
-                        UserId = identityUser.Id,
-                        FirstName = form.FirstName,
-                        LastName = form.LastName,
-                        StreetAdress = form.StreetAdress,
-                        PostalCode = form.PostalCode,
-                        City = form.City,
-                        PhoneNumber = form.PhoneNumber,
-                        Company = form.Company ?? null,
-                        CreatedAt = form.CreatedAt
-                    });
-                    await _identityContext.SaveChangesAsync();
-
-                    await _userManager.AddToRoleAsync(identityUser, "Administrator");
-
-                    var signInResult = await _signInManager.PasswordSignInAsync(identityUser, form.Password, false, false);
-                    if (signInResult.Succeeded)
-                        return LocalRedirect(form.ReturnUrl);
-                    else
-                        return RedirectToAction("SignIn", "Account");
-                }
+                var signInResult = await _authService.RegisterAdminAsync(form);
+                if (signInResult == true)
+                    return LocalRedirect(form.ReturnUrl);
+                else
+                    return RedirectToAction("SignIn", "Account");
             }
             ModelState.AddModelError(string.Empty, "Unable to create an Account");
             return View(form);
@@ -110,7 +78,7 @@ namespace WebApp.Controllers
             if (ModelState.IsValid)
             {
                 if (product.DiscountPrice == null) product.DiscountPrice = 0;
-                var result = await _productService.CreateProductAsync(product);
+                await _productService.CreateProductAsync(product);
                 ModelState.Clear();
                 ModelState.AddModelError(string.Empty, "Product Created!");
                 return View();

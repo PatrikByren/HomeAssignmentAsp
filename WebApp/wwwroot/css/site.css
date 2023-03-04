@@ -739,7 +739,6 @@ p {
             height: 450px;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
         }
 
             .productdetails .container .productdescription .textimage .content p {

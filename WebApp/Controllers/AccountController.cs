@@ -86,7 +86,8 @@ namespace WebApp.Controllers
                     ModelState.AddModelError(string.Empty, "A user whit the same email already exists");
                     return View(form);
                 }
-                if (await _auth.RegisterAsync(form)) { return LocalRedirect(form.ReturnUrl); }
+                if (await _auth.RegisterAsync(form)) 
+                { return LocalRedirect(form.ReturnUrl); }
                 else { return View(form); }
             }
             ModelState.AddModelError(string.Empty, "Unable to create an Account");
@@ -112,6 +113,7 @@ namespace WebApp.Controllers
             ModelState.AddModelError(string.Empty, "Incorrect email or password");
             return View(form);
         }
+
         public async Task<IActionResult> LogOut()
         {
             if (_signInManager.IsSignedIn(User))
@@ -119,21 +121,7 @@ namespace WebApp.Controllers
 
             return LocalRedirect("/");
         }
-        /*public IActionResult UserHandler()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> UserHandler(string id)
-        {
-            if (ModelState.IsValid)
-            {
-                var userAccount = await _userSerivce.GetUserAccountAsync(id);
-                return View(userAccount);
-            }
-            return View();
-        }*/
         [Authorize]
         public async Task<IActionResult> UpdateUser(UserProfileModel user)
         {
