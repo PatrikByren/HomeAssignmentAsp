@@ -2,26 +2,27 @@
 
 <div class="col">
     <div class="card">
-        
     <form method="get" asp-controller="Product" asp-action="Index">
         <input type="hidden" name="skunumber" value="@Model.SKU" />
       <button class="cardbutton" type="submit">
         @if (Model.ImgUrl != null!)
         {
             <img src="~/Images/@Model.ImgUrl" class="card-img-top" alt="@Model.ImgAlt" />
+
         }
         else
         {
             <img src="~/Images/Logopic.png" class="card-img-top" alt="no picture avalible" />
+
         }
         </button>
         </form>
         @if (@Model.New == true)
         {
-        <div class='hide'><p class='new'>New</p></div>
+            <div class="shownew"><p class='new'>New</p></div>
         }
         else
-        {<div class='show'><p class='new'>New</p></div>}
+        {<div class='hide'><p class='new'>New</p></div>}
 
         <div class="card-body">
             
@@ -39,7 +40,6 @@
                 {
                     <p class='price'>$@Model.Price</p>
                 }
-
             </div>
         </div>
     </div>

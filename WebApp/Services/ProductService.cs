@@ -90,8 +90,11 @@ namespace WebApp.Services
                     var description = await _context.ProductDescriptions.FindAsync(item.DescriptionId);
                     var category = await _context.ProductCategories.FindAsync(item.CategoryId);
                     //var reviews = await _context.ProductReviews.Where(x => x.ProductSKU == item.SKU).ToListAsync();
-
-                    if (item.CreatedAt.AddDays(10) < DateTime.Now)
+                    if (item.CreatedAt.AddDays(10) < DateTime.Today) 
+                    { }
+                        else 
+                    { }
+                    if (item.CreatedAt.AddDays(10) > DateTime.Today)
                     {
                         productCardModel.Add(new ProductCardModel
                         {
